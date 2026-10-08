@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sabbir Ahmad Antor | Computational structural biology</title>
+<meta name="description" content="I use computational methods to study protein variants and protein-ligand interactions.">
+<meta property="og:title" content="Sabbir Ahmad Antor | Computational structural biology">
+<meta property="og:description" content="I use computational methods to study protein variants and protein-ligand interactions.">
+<meta property="og:image" content="https://sabbirahmadantor.github.io/assets/photo.jpg">
+<link rel="canonical" href="https://sabbirahmadantor.github.io/">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<header class="site-header">
+  <img class="photo" src="assets/photo.jpg" width="595" height="600" alt="Photo of Sabbir Ahmad Antor">
+  <div class="intro">
+    <h1>Sabbir Ahmad Antor</h1>
+    <p class="tagline">Computational structural biology and bioinformatics</p>
+    <p>Fourth-year BSc student, Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology (SUST), Sylhet, Bangladesh. Expected graduation: June 2027.</p>
+    <p class="links">
+      <a href="mailto:sabbir.ahmad.antor@gmail.com">Email</a> |
+      <a href="https://scholar.google.com/citations?user=3EXXRgsAAAAJ">Google Scholar</a> |
+      <a href="https://orcid.org/0009-0008-4020-2316">ORCID</a> |
+      <a href="https://www.researchgate.net/profile/Sabbir-Antor">ResearchGate</a> |
+      <a href="https://www.linkedin.com/in/sabbir-ahmad-antor-69b73230a">LinkedIn</a> |
+      <a href="https://github.com/SabbirAhmadAntor">GitHub</a>
+    </p>
+  </div>
+</header>
+
+<nav class="site-nav">
+  <a href="#about">About</a>
+  <a href="#research">Research</a>
+  <a href="#publications">Publications</a>
+  <a href="#in-preparation">In preparation</a>
+  <a href="#methods">Methods and tools</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+<section id="about">
+  <h2>About</h2>
+  <p>I use computational methods to study protein variants and protein-ligand interactions. My main line of work is missense variation in metabolic G protein-coupled receptors: I built a filtering and structural characterization pipeline for the GIP receptor (GIPR) and plan to apply it next to the glucagon receptor. I also use molecular docking and molecular dynamics to test natural compounds against enzyme targets, including dihydrotanshinone I against 15-hydroxyprostaglandin dehydrogenase (15-PGDH). Alongside this, I work on bacteriophage genome analysis. I am looking for a thesis-based MSc in computational or structural biology.</p>
+</section>
+
+<section id="research">
+  <h2>Research</h2>
+
+  <article class="project">
+    <h3>Dihydrotanshinone I as a candidate 15-PGDH inhibitor</h3>
+    <p>15-hydroxyprostaglandin dehydrogenase (15-PGDH) breaks down prostaglandin E2, and blocking it is being studied as a way to support tissue repair. I asked whether dihydrotanshinone I, a compound from the roots of <i>Salvia miltiorrhiza</i>, is predicted to bind at the enzyme's inhibitor site.</p>
+    <p><strong>What I did.</strong> I docked dihydrotanshinone I into three experimental structures of 15-PGDH (two X-ray, one cryo-EM) with AutoDock Vina 1.2.7, profiled the interactions with PLIP, and ran three 100 ns molecular dynamics replicas of each complex in GROMACS, 900 ns in total.</p>
+    <p><strong>What I found.</strong> Dihydrotanshinone I docked into the inhibitor site in all three structures and scored better than the co-crystallized inhibitor in two of them. Breaking the scores into their components showed that this advantage comes from its rigidity: it pays no torsional penalty, while the inhibitors make stronger contacts. In every simulation it stayed in continuous contact with the protein and kept its contacts with the inhibitor-site residues. It is a candidate for experimental testing, not a confirmed inhibitor.</p>
+    <p><strong>How I checked it.</strong></p>
+    <ul>
+      <li>Redocked each structure's own co-crystallized inhibitor to validate the docking setup.</li>
+      <li>Repeated the docking with 15 random seeds.</li>
+      <li>Reproduced the docking scores with a separate Vina build on a second operating system.</li>
+      <li>Rescored the poses with a second scoring function (Vinardo).</li>
+      <li>Ran every simulation in triplicate, with software versions pinned and documented.</li>
+    </ul>
+    <figure>
+      <img src="assets/fig-pgdh.png" width="1600" height="1861" alt="Figure 7 of the 15-PGDH preprint: ligand RMSD over time for three replicas in 9PFL, 9PFM and 8CVN, ligand RMSD of 8CVN cross-fit against the 9PFL pose, contact occupancy and per-residue RMSF">
+      <figcaption>Figure 7 from Antor, Soash, et al. (2026), Research Square, <a href="https://doi.org/10.21203/rs.3.rs-10719902/v1">https://doi.org/10.21203/rs.3.rs-10719902/v1</a></figcaption>
+    </figure>
+    <p><a href="https://doi.org/10.21203/rs.3.rs-10719902/v1">Preprint</a> | <a href="https://doi.org/10.5281/zenodo.21945974">Zenodo deposit</a></p>
+    <h4>Explainer videos</h4>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/QInbTdWnV7M?rel=0" title="Explainer videos" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+    <p><a href="https://www.youtube.com/playlist?list=PLDXCjS5f5FE4">Watch all nine parts on YouTube</a></p>
+    <p>Role: first author.</p>
+  </article>
+
+  <article class="project">
+    <h3>Missense variants in the GIP receptor</h3>
+    <p>The GIP receptor (GIPR) is a metabolic G protein-coupled receptor and one of the two targets of the diabetes and obesity drug tirzepatide. I asked which naturally occurring missense variants in GIPR are most likely to destabilize the receptor or disrupt its function.</p>
+    <p><strong>What I did.</strong> I collected GIPR missense variants from dbSNP and passed them through sequential filters: PolyPhen-2 (HumDiv), a gnomAD minor allele frequency below 0.005, SIFT 4G, PROVEAN, AlphaMissense, MetaRNN, REVEL and mCSM-membrane pathogenicity. I then applied a membrane-specific stability cutoff (mCSM-membrane ΔΔG ≤ −1.0 kcal/mol) and characterized the remaining variants with DynaMut2, Missense3D-TM, UniProt topology and domain mapping, Protter, phyloP, GERP++, ConSurf and HOPE.</p>
+    <p><strong>What I found.</strong> Fourteen variants passed every filter, all of them in the transmembrane helices. One of them, Q224P, sits at the GIP-binding site, which makes it the strongest candidate for pharmacogenomic follow-up.</p>
+    <p><strong>How I checked it.</strong></p>
+    <ul>
+      <li>Required agreement across seven predictors instead of relying on one.</li>
+      <li>Took the stability cutoff from a published benchmark of stability predictors on membrane proteins.</li>
+      <li>Cross-checked the shortlist with Missense3D-TM, a membrane-specific structural tool, which flagged structural damage for 13 of the 14 variants.</li>
+      <li>Assessed conservation at the DNA level (phyloP, GERP++) and the protein level (ConSurf).</li>
+    </ul>
+    <figure>
+      <img src="assets/fig-gipr.png" width="1600" height="1076" alt="Figure 1 of the GIPR preprint: workflow in three stages, pathogenicity prediction and sequential filtering, prediction of effects on protein stability, and structural and functional characterization">
+      <figcaption>Corrected version of Figure 1 from Antor, Mahjabin, and Jewel (2026), Research Square, <a href="https://doi.org/10.21203/rs.3.rs-10159812/v2">https://doi.org/10.21203/rs.3.rs-10159812/v2</a></figcaption>
+    </figure>
+    <p><a href="https://doi.org/10.21203/rs.3.rs-10159812/v2">Preprint</a> | <a href="https://doi.org/10.5281/zenodo.20801802">Zenodo deposit</a></p>
+    <p>Role: first author.</p>
+  </article>
+</section>
+
+<section id="publications">
+  <h2>Publications</h2>
+  <h3>Preprints</h3>
+  <p>These preprints have not yet been peer reviewed.</p>
+  <ul class="refs">
+    <li><strong>Antor, S. A.</strong>, Soash, M. A. S., Mahmud, M. A., Niloy, R. K., Bakul, M. M. H., &amp; Biswas, G. C. (2026). <i>Docking and molecular dynamics of the natural diterpenoid dihydrotanshinone I in human 15-PGDH across three inhibitor-bound receptor structures</i>. Research Square. <a href="https://doi.org/10.21203/rs.3.rs-10719902/v1">https://doi.org/10.21203/rs.3.rs-10719902/v1</a></li>
+    <li><strong>Antor, S. A.</strong>, Mahjabin, &amp; Jewel, N. A. (2026). <i>Multi-predictor pathogenicity filtering and membrane-specific stability analysis prioritize and characterize candidate destabilizing missense variants of the GIP receptor (GIPR)</i>. Research Square. <a href="https://doi.org/10.21203/rs.3.rs-10159812/v2">https://doi.org/10.21203/rs.3.rs-10159812/v2</a></li>
+  </ul>
+  <h3>Data sets</h3>
+  <ul class="refs">
+    <li><strong>Antor, S. A.</strong>, Soash, M. A. S., Mahmud, M. A., Niloy, R. K., Bakul, M. M. H., &amp; Biswas, G. C. (2026). <i>Supporting data: Docking and molecular dynamics of dihydrotanshinone I in human 15-PGDH</i> [Data set]. Zenodo. <a href="https://doi.org/10.5281/zenodo.21945974">https://doi.org/10.5281/zenodo.21945974</a></li>
+    <li><strong>Antor, S. A.</strong>, Mahjabin, &amp; Jewel, N. A. (2026). <i>S1 Dataset: Sequential in silico filtering of GIPR missense variants</i> [Data set]. Zenodo. <a href="https://doi.org/10.5281/zenodo.20801802">https://doi.org/10.5281/zenodo.20801802</a></li>
+  </ul>
+</section>
+
+<section id="in-preparation">
+  <h2>In preparation</h2>
+  <ul>
+    <li>Comparative genomics of 118 complete <i>Enterobacter cloacae</i> bacteriophage genomes: genus-level structure and screening for therapeutic candidates.</li>
+    <li>Re-analysis of public RNA-seq data (GEO GSE287646) on GDF11 treatment of senescent human mesenchymal stem cells.</li>
+  </ul>
+</section>
+
+<section id="methods">
+  <h2>Methods and tools</h2>
+  <ul>
+    <li>Variant effect prediction: dbSNP, dbNSFP, AlphaMissense, REVEL, PolyPhen-2, SIFT 4G, PROVEAN, mCSM-membrane, DynaMut2, Missense3D-TM, ConSurf</li>
+    <li>Docking and interaction analysis: AutoDock Vina, Meeko, RDKit, PLIP, PyMOL, UCSF ChimeraX</li>
+    <li>Molecular dynamics: GROMACS, AmberTools</li>
+    <li>Genomics and transcriptomics: Prokka, FastANI, OrthoFinder, DESeq2</li>
+    <li>Programming: Python, R, Bash on Linux</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:sabbir.ahmad.antor@gmail.com">sabbir.ahmad.antor@gmail.com</a> (preferred) or <a href="mailto:2021431036@student.sust.edu">2021431036@student.sust.edu</a> (institutional)</p>
+</section>
+
+</main>
+
+</div>
+</body>
+</html>
