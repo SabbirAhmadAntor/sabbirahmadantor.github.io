@@ -47,7 +47,7 @@
 
 <section id="about">
   <h2>About</h2>
-  <p>I use computational methods to study protein variants and protein-ligand interactions. My main line of work is missense variation in metabolic G protein-coupled receptors: I built a filtering and structural characterization pipeline for the GIP receptor (GIPR) and plan to apply it next to the glucagon receptor. I also use molecular docking and molecular dynamics to test natural compounds against enzyme targets, including dihydrotanshinone I against 15-hydroxyprostaglandin dehydrogenase (15-PGDH). Alongside this, I work on bacteriophage genome analysis. I am looking for a thesis-based MSc in the life sciences.</p>
+  <p>I use computational methods to study protein variants and protein-ligand interactions. My main line of work is missense variation in metabolic G protein-coupled receptors, where I built a filtering and structural characterization pipeline for the GIP receptor (GIPR) using membrane-specific prediction tools. I also use molecular docking and molecular dynamics to test natural compounds against enzyme targets, including dihydrotanshinone I against 15-hydroxyprostaglandin dehydrogenase (15-PGDH), and I have re-analyzed public RNA-seq data on GDF11 in senescent mesenchymal stem cells. Alongside this, I work on bacteriophage genome analysis. I am looking for a research-focused master's program in the life sciences where I can learn experimental molecular and cell biology alongside quantitative methods.</p>
 </section>
 
 <section id="education">
@@ -113,14 +113,19 @@
 
 <section id="publications">
   <h2>Publications</h2>
+  <h3>Conference papers</h3>
+  <ul class="refs">
+    <li><strong>Antor, S. A.</strong>, Al-Mahmud, M., Soash, M. A. S., Bakul, M. M. H., Arpa, N. K., &amp; Biswas, G. C. (2026). <i>GDF11 elicits a negligible transcriptional response in an immortalized human mesenchymal stem cell model</i>. Accepted after peer review for presentation at the 2026 International Conference on Recent Progresses in Science, Engineering and Technology (ICRPSET), University of Rajshahi, Bangladesh, December 8-9, 2026.</li>
+  </ul>
   <h3>Preprints</h3>
   <p>These preprints have not yet been peer reviewed.</p>
   <ul class="refs">
     <li><strong>Antor, S. A.</strong>, Soash, M. A. S., Mahmud, M. A., Niloy, R. K., Bakul, M. M. H., &amp; Biswas, G. C. (2026). <i>Docking and molecular dynamics of the natural diterpenoid dihydrotanshinone I in human 15-PGDH across three inhibitor-bound receptor structures</i>. Research Square. <a href="https://doi.org/10.21203/rs.3.rs-10719902/v1">https://doi.org/10.21203/rs.3.rs-10719902/v1</a></li>
     <li><strong>Antor, S. A.</strong>, Mahjabin, &amp; Jewel, N. A. (2026). <i>Multi-predictor pathogenicity filtering and membrane-specific stability analysis prioritize and characterize candidate destabilizing missense variants of the GIP receptor (GIPR)</i>. Research Square. <a href="https://doi.org/10.21203/rs.3.rs-10159812/v2">https://doi.org/10.21203/rs.3.rs-10159812/v2</a></li>
   </ul>
-  <h3>Data sets</h3>
+  <h3>Data and code</h3>
   <ul class="refs">
+    <li><strong>Antor, S. A.</strong>, Al-Mahmud, M., Soash, M. A. S., Bakul, M. M. H., Arpa, N. K., &amp; Biswas, G. C. (2026). <i>Code and results for "GDF11 Elicits a Negligible Transcriptional Response in an Immortalized Human Mesenchymal Stem Cell Model" (re-analysis of GEO GSE287646)</i> [Computer software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.24236780">https://doi.org/10.5281/zenodo.24236780</a></li>
     <li><strong>Antor, S. A.</strong>, Soash, M. A. S., Mahmud, M. A., Niloy, R. K., Bakul, M. M. H., &amp; Biswas, G. C. (2026). <i>Supporting data: Docking and molecular dynamics of dihydrotanshinone I in human 15-PGDH</i> [Data set]. Zenodo. <a href="https://doi.org/10.5281/zenodo.21945974">https://doi.org/10.5281/zenodo.21945974</a></li>
     <li><strong>Antor, S. A.</strong>, Mahjabin, &amp; Jewel, N. A. (2026). <i>S1 Dataset: Sequential in silico filtering of GIPR missense variants</i> [Data set]. Zenodo. <a href="https://doi.org/10.5281/zenodo.20801802">https://doi.org/10.5281/zenodo.20801802</a></li>
   </ul>
@@ -130,7 +135,6 @@
   <h2>In preparation</h2>
   <ul>
     <li>Comparative genomics of 118 complete <i>Enterobacter cloacae</i> bacteriophage genomes: genus-level structure and screening for therapeutic candidates.</li>
-    <li>Re-analysis of public RNA-seq data (GEO GSE287646) on GDF11 treatment of senescent human mesenchymal stem cells.</li>
   </ul>
 </section>
 
@@ -165,9 +169,9 @@
 <section id="leadership">
   <h2>Leadership</h2>
   <ul>
+    <li>General Secretary, SUST Chess Club (November 2026 to present); previously Office Secretary (2025 to 2026)</li>
     <li>Assistant General Secretary, GEB Society, SUST (2026 to present)</li>
     <li>Executive Member, Network of Young Biotechnologists of Bangladesh (NYBB), SUST Chapter (2026 to present)</li>
-    <li>Office Secretary, SUST Chess Club (2025 to present)</li>
   </ul>
 </section>
 
@@ -178,6 +182,33 @@
 
 </main>
 
+<footer class="site-footer">
+  <p>Last updated: <span id="last-updated">November 16, 2026</span><span id="visitors" hidden> | Visitors: <span id="visitor-count"></span></span></p>
+</footer>
+
 </div>
+<script>
+(function () {
+  var modified = new Date(document.lastModified);
+  if (!isNaN(modified.getTime())) {
+    document.getElementById('last-updated').textContent = modified.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
+  }
+  fetch('https://sabbirahmadantor.goatcounter.com/counter/TOTAL.json')
+    .then(function (response) {
+      if (response.status !== 200) { throw new Error('HTTP ' + response.status); }
+      return response.json();
+    })
+    .then(function (data) {
+      if (!data || data.count === undefined || data.count === null) { return; }
+      var digits = String(data.count).replace(/[\s,.'\u2019]/g, '');
+      if (/^\d+$/.test(digits) && Number(digits) > 0) {
+        document.getElementById('visitor-count').textContent = data.count;
+        document.getElementById('visitors').hidden = false;
+      }
+    })
+    .catch(function () {});
+})();
+</script>
+<script data-goatcounter="https://sabbirahmadantor.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

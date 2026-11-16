@@ -135,3 +135,15 @@ figcaption {
   height: auto;
   border: 0;
 }
+
+/* Footer */
+
+.site-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+  font-size: 0.9em;
+}
+
+.site-footer p {
+  margin: 0;
+}
